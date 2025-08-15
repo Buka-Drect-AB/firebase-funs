@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sourceRoot":"","sources":["../../../src/classes/organization/index.ts"],"names":[],"mappings":";;;AACA,oCAAiC;AACjC,+CAA+D;AAkD/D,MAAa,iBAAkB,SAAQ,aAAmB;IACjD,MAAM,CAAC,iBAAiB,CAAC,IAAY;QAC1C,OAAO,IAAA,kCAAyB,EAAC,IAAI,CAAC,CAAC;IACzC,CAAC;IAEM,QAAQ,CAAC,GAAW;QACzB,OAAO,IAAI,CAAC,MAAM,CAAC,KAAK,CAAC,GAAG,CAAC,CAAC;IAChC,CAAC;CACF;AARD,8CAQC"}
