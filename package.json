@@ -1,7 +1,7 @@
 {
-  "name": "@akub/types",
+  "name": "@akub/server-funs",
   "version": "1.0.0",
-  "description": "Shared TypeScript types and classes for akub new systems",
+  "description": "Shared TypeScript functionality for firebase-admin calls",
   "main": "build/index.js",
   "files": [
     "/build"
@@ -22,12 +22,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Buka-Drect-AB/akub-types.git"
+    "url": "git+https://github.com/Buka-Drect-AB/server-funs.git"
   },
   "bugs": {
-    "url": "https://github.com/Buka-Drect-AB/akub-types/issues"
+    "url": "https://github.com/Buka-Drect-AB/server-funs/issues"
   },
-  "homepage": "https://github.com/Buka-Drect-AB/akub-types#readme",
+  "homepage": "https://github.com/Buka-Drect-AB/server-funs#readme",
   "author": "Jackmay Confidence",
   "license": "MIT",
   "devDependencies": {
@@ -36,6 +36,8 @@
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "axios": "^1.11.0",
+    "firebase-admin": "^11.11.1",
     "nanoid": "^5.1.5"
   }
 }

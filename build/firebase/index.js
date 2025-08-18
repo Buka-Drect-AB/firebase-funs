@@ -1,6 +1,4 @@
 "use strict";
-// Main entry point for console-shared-types
-// Export all types and classes from their respective directories
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     var desc = Object.getOwnPropertyDescriptor(m, k);
@@ -16,7 +14,6 @@ var __exportStar = (this && this.__exportStar) || function(m, exports) {
     for (var p in m) if (p !== "default" && !Object.prototype.hasOwnProperty.call(exports, p)) __createBinding(exports, m, p);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-// Export functions
-__exportStar(require("./firebase"), exports);
-__exportStar(require("./http"), exports);
+__exportStar(require("./firestore"), exports);
+__exportStar(require("./storage"), exports);
 //# sourceMappingURL=index.js.map
