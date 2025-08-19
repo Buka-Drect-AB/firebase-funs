@@ -66,7 +66,7 @@ A robust HTTP client with enhanced features:
 ## Installation
 
 ```bash
-npm install git+https://github.com/Buka-Drect-AB/server-funs.git
+npm install git+https://github.com/Buka-Drect-AB/firebase-funs.git
 ```
 
 ## Usage
