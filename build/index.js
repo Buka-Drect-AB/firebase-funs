@@ -19,4 +19,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 // Export functions
 __exportStar(require("./firebase"), exports);
 __exportStar(require("./http"), exports);
+__exportStar(require("./utils"), exports);
 //# sourceMappingURL=index.js.map
