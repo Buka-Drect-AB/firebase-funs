@@ -35,9 +35,11 @@
     "typescript": "^5.0.0"
   },
   "dependencies": {
-    "bcryptjs": "^3.0.2",
     "axios": "^1.11.0",
+    "bcryptjs": "^3.0.2",
     "firebase-admin": "^11.11.1",
-    "nanoid": "^5.1.5"
+    "nanoid": "^5.1.5",
+    "request": "^2.88.2",
+    "tunnel-agent": "^0.6.0"
   }
 }
