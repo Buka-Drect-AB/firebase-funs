@@ -268,6 +268,39 @@ class FirestoreUtil {
         });
     }
     /**
+     * Create a DocumentReference without writing to the database
+     * @param path - Collection/document path (e.g., 'collection' or 'collection/doc/subcollection')
+     * @param docId - Document ID (optional, will auto-generate if not provided)
+     * @return DocumentReference
+     */
+    createDocumentRef(path, docId) {
+        try {
+            if (docId) {
+                // Handle compound path with explicit docId
+                const segments = path.split("/");
+                if (segments.length % 2 === 0) {
+                    // Even number of segments means we're at collection level
+                    return this.db.collection(path).doc(docId);
+                }
+                else {
+                    // Odd number means we're at document level, so we need to add collection
+                    return this.db.doc(`${path}/${docId}`);
+                }
+            }
+            else {
+                // Auto-generate document ID - can only be done at top-level collections
+                if (path.includes("/")) {
+                    throw new Error("Auto-generated document IDs are only supported for top-level collections");
+                }
+                return this.db.collection(path).doc();
+            }
+        }
+        catch (error) {
+            console.error(`Error creating document reference at path ${path}:`, error);
+            throw new Error(`Failed to create document reference: ${error instanceof Error ? error.message : String(error)}`);
+        }
+    }
+    /**
      * Generic function to query documents from Firestore with dynamic conditions
      * @param path - Collection/document path (e.g., 'collection' or 'collection/doc/subcollection')
      * @param options - Query configuration options

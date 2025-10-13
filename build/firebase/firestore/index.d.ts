@@ -94,6 +94,13 @@ export declare class FirestoreUtil {
      */
     deleteDocument(path: string, docId?: string): Promise<void>;
     /**
+     * Create a DocumentReference without writing to the database
+     * @param path - Collection/document path (e.g., 'collection' or 'collection/doc/subcollection')
+     * @param docId - Document ID (optional, will auto-generate if not provided)
+     * @return DocumentReference
+     */
+    createDocumentRef(path: string, docId?: string): admin.firestore.DocumentReference;
+    /**
      * Generic function to query documents from Firestore with dynamic conditions
      * @param path - Collection/document path (e.g., 'collection' or 'collection/doc/subcollection')
      * @param options - Query configuration options
