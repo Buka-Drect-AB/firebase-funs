@@ -252,8 +252,10 @@ class FirestoreUtil {
                     }
                     docRef = this.db.doc(path);
                 }
+                // Clean undefined values before saving (safety measure)
+                const cleanedData = removeUndefinedValues(data);
                 // Add updatedAt timestamp
-                const updateData = Object.assign(Object.assign({}, data), { lut: Date.now() });
+                const updateData = Object.assign(Object.assign({}, cleanedData), { lut: Date.now() });
                 yield docRef.update(updateData);
                 return docRef;
             }

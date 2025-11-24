@@ -71,8 +71,6 @@ export class FirestoreUtil {
     merge = false
   ): Promise<{ docRef: admin.firestore.DocumentReference; docId: string }> {
     try {
-
-
       // Clean undefined values before saving (safety measure)
       const cleanedData = removeUndefinedValues(data);
 
@@ -294,9 +292,12 @@ export class FirestoreUtil {
         docRef = this.db.doc(path);
       }
 
+      // Clean undefined values before saving (safety measure)
+      const cleanedData = removeUndefinedValues(data);
+
       // Add updatedAt timestamp
       const updateData = {
-        ...data,
+        ...cleanedData,
         lut: Date.now(), // Using Date.now() instead of unixTimeStampNow() since that function wasn't defined
       };
 
