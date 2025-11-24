@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FirestoreUtil = void 0;
+exports.removeUndefinedValues = removeUndefinedValues;
 /**
  * Recursively removes undefined values from an object
  * This is a safety measure in addition to Firestore's ignoreUndefinedProperties setting

@@ -16,6 +16,11 @@ type QueryOptions = {
     startAt?: any;
     endAt?: any;
 };
+/**
+ * Recursively removes undefined values from an object
+ * This is a safety measure in addition to Firestore's ignoreUndefinedProperties setting
+ */
+export declare function removeUndefinedValues<T extends Record<string, any>>(obj: T): T;
 export declare class FirestoreUtil {
     readonly db: admin.firestore.Firestore;
     constructor(admin: admin.firestore.Firestore);

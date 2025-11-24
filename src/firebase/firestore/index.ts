@@ -26,7 +26,7 @@ type QueryOptions = {
  * Recursively removes undefined values from an object
  * This is a safety measure in addition to Firestore's ignoreUndefinedProperties setting
  */
-function removeUndefinedValues<T extends Record<string, any>>(obj: T): T {
+export function removeUndefinedValues<T extends Record<string, any>>(obj: T): T {
   const cleaned: any = {};
   for (const key in obj) {
     if (obj.hasOwnProperty(key)) {
