@@ -22,6 +22,34 @@ type QueryOptions = {
   endAt?: any; // For range queries
 };
 
+/**
+ * Recursively removes undefined values from an object
+ * This is a safety measure in addition to Firestore's ignoreUndefinedProperties setting
+ */
+function removeUndefinedValues<T extends Record<string, any>>(obj: T): T {
+  const cleaned: any = {};
+  for (const key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      const value = obj[key];
+      if (value !== undefined) {
+        // Check if it's a plain object (not Date, Array, etc.) for recursion
+        if (
+          value !== null &&
+          typeof value === 'object' &&
+          !Array.isArray(value) &&
+          Object.prototype.toString.call(value) === '[object Object]'
+        ) {
+          // Recursively clean nested objects
+          cleaned[key] = removeUndefinedValues(value as Record<string, any>);
+        } else {
+          cleaned[key] = value;
+        }
+      }
+    }
+  }
+  return cleaned as T;
+}
+
 export class FirestoreUtil {
   readonly db: admin.firestore.Firestore;
   constructor(admin: admin.firestore.Firestore) {
@@ -43,9 +71,14 @@ export class FirestoreUtil {
     merge = false
   ): Promise<{ docRef: admin.firestore.DocumentReference; docId: string }> {
     try {
+
+
+      // Clean undefined values before saving (safety measure)
+      const cleanedData = removeUndefinedValues(data);
+
       // Add timestamps
       const timestampedData = {
-        ...data,
+        ...cleanedData,
       };
 
       let docRef: admin.firestore.DocumentReference;

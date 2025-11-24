@@ -10,6 +10,32 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.FirestoreUtil = void 0;
+/**
+ * Recursively removes undefined values from an object
+ * This is a safety measure in addition to Firestore's ignoreUndefinedProperties setting
+ */
+function removeUndefinedValues(obj) {
+    const cleaned = {};
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            const value = obj[key];
+            if (value !== undefined) {
+                // Check if it's a plain object (not Date, Array, etc.) for recursion
+                if (value !== null &&
+                    typeof value === 'object' &&
+                    !Array.isArray(value) &&
+                    Object.prototype.toString.call(value) === '[object Object]') {
+                    // Recursively clean nested objects
+                    cleaned[key] = removeUndefinedValues(value);
+                }
+                else {
+                    cleaned[key] = value;
+                }
+            }
+        }
+    }
+    return cleaned;
+}
 class FirestoreUtil {
     constructor(admin) {
         this.db = admin;
@@ -25,8 +51,10 @@ class FirestoreUtil {
     setCompoundedDocument(path_1, docId_1, data_1) {
         return __awaiter(this, arguments, void 0, function* (path, docId, data, merge = false) {
             try {
+                // Clean undefined values before saving (safety measure)
+                const cleanedData = removeUndefinedValues(data);
                 // Add timestamps
-                const timestampedData = Object.assign({}, data);
+                const timestampedData = Object.assign({}, cleanedData);
                 let docRef;
                 let finalDocId;
                 if (docId) {
